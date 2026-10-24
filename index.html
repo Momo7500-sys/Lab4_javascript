@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://w3.org">
+<head>
+    <meta charset="utf-8" />
+    <title>О СЕБЕ — Историк и реконструктор</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        footer {
+            font-family: "Georgia", serif;
+            color: #ffffff;
+            background-color: var(--accent-color);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Главный контейнер с эффектом «старой бумаги» -->
+    <div class="paper-container">
+        <div class="vintage-badge">Архив</div>
+
+        <header>
+            <h1>МАЙГА МОХАМЕД А — Историк и реконструктор</h1>
+            <!-- Обновление навигации для соответствия новым секциям (Flexbox в CSS) -->
+            <nav class="nav-links">
+                <a href="#skills">Навыки</a>
+                <a href="#projects">Проекты по реконструкции</a>
+                <a href="#epochs">Исторические эпохи</a>
+                <a href="#artifacts">Артефакты</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+        </header>
+
+        <!-- Relative позиционирование -->
+        <aside class="sidebar-aside">
+            <h2>Мой любимый период</h2>
+            <div>
+                Меня больше всего увлекает Эпоха викингов (VIII–XI века).
+                Это удивительное время морских походов, расцвета ремёсел,
+                создания уникального скандинавского орнамента и кораблестроения,
+                которое я мечтаю воссоздать in деталях.
+            </div>
+        </aside>
+
+        <!-- Static позиционирование для основного контента -->
+        <main class="main-content">
+            <section id="skills">
+                <h2>НАВЫКИ</h2>
+                <ul>
+                    <li>Архивные исследования</li>
+                    <li>Историческая реконструкция костюма</li>
+                    <li>Картография и хронология</li>
+                </ul>
+            </section>
+
+            <section id="projects">
+                <h2>ПРОЕКТЫ ПО РЕКОНСТРУКЦИИ</h2>
+                <ol>
+                    <li>Реконструкция военного лагеря Древнего Рима (I век н.э.)</li>
+                    <li>Турнир Святого Георгия (Рыцарское Средневековье, XV век)</li>
+                    <li>Костюмы и быт наполеоновской эпохи (1812 год)</li>
+                    <li>Строительство макета средневековой кузницы</li>
+                </ol>
+            </section>
+
+            <div class="image-wrapper">
+                <img src="images/cost.png" alt="Портрет историка в процессе реконструкции средневекового костюма" width="400" height="200" style="filter: sepia(0.5);" />
+            </div>
+
+            <hr class="vintage-divider" style="border: 1px dashed #8c6d4f; margin: 40px 0;">
+
+            <!-- ======================================================== -->
+            <!-- НОВЫЕ БЛОКИ ДЛЯ ЛАБОРАТОРНОЙ №3 (ВАРИАНТ 19)             -->
+            <!-- ======================================================== -->
+            <!-- Блок 1: Исторические эпохи (Flexbox-карточки 1/2/3 в ряд) -->
+            <section id="epochs" class="epochs-section">
+                <h2>ИСТОРИЧЕСКИЕ ЭПОХИ</h2>
+                <div class="epochs-flex-container">
+
+                    <article class="epoch-card">
+                        <img src="images/antiquite.jpg" alt="Античность" class="epoch-card-img">
+                        <div class="epoch-card-body">
+                            <h3>Античность</h3>
+                            <p>Период: <time datetime="-0800/-0476">VIII в. до н.э. — V в. н.э.</time></p>
+                            <p>Ключевые события: Расцвет полисов, создание Римского государства.</p>
+                        </div>
+                    </article>
+
+                    <article class="epoch-card">
+                        <img src="images/chateau.jpeg" alt="Средневековье" class="epoch-card-img">
+                        <div class="epoch-card-body">
+                            <h3>Средневековье</h3>
+                            <p>Период: <time datetime="0476/1492">V — XV века</time></p>
+                            <p>Ключевые события: Великое переселение народов, эпоха рыцарей.</p>
+                        </div>
+                    </article>
+
+                    <article class="epoch-card">
+                        <img src="images/tempsmoderne.jpeg" alt="Новое время" class="epoch-img">
+                        <div class="epoch-card-body">
+                            <h3>Новое время</h3>
+                            <p>Период: <time datetime="1492/1914">Конец XV — начало XX в.</time></p>
+                            <p>Ключевые события: Промышленный переворот, научные открытия.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- Блок 2: Артефакты музея (Grid-сетка 2х2) -->
+            <section id="artifacts" class="artifacts-section">
+                <h2>АРТЕФАКТЫ МУЗЕЯ</h2>
+                <div class="artifacts-grid-container">
+
+                    <figure class="artifact-item">
+                        <img src="images/epee.jpeg" alt="Римский гладиус">
+                        <figcaption>
+                            <h4>Римский гладиус</h4>
+                            <p>Век: <time datetime="0001/0100">I в. н.э.</time></p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="artifact-item">
+                        <img src="images/armure.jpeg" alt="Кольчуга рыцаря">
+                        <figcaption>
+                            <h4>Кольчуга рыцаря</h4>
+                            <p>Век: <time datetime="1301/1400">XIV в.</time></p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="artifact-item">
+                        <img src="images/astrolabe.jpeg" alt="Астролябия">
+                        <figcaption>
+                            <h4>Астролябия</h4>
+                            <p>Век: <time datetime="1501/1600">XVI в.</time></p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="artifact-item">
+                        <img src="images/fusil.jpeg" alt="Мушкет кремнёвый">
+                        <figcaption>
+                            <h4>Мушкет кремнёвый</h4>
+                            <p>Век: <time datetime="1701/1800">XVIII в.</time></p>
+                        </figcaption>
+                    </figure>
+
+                </div>
+            </section>
+            <!-- ======================================================== -->
+
+        </main>
+
+        <!-- Форма для отправки сообщений -->
+        <form id="contact" class="vintage-form" onsubmit="return false;">
+            <h2>Написать реконструктору</h2>
+            <div class="form-group">
+                <label for="username">Имя :</label>
+                <input type="text" id="username" name="username" placeholder="Ваше Имя" />
+            </div>
+            <div class="form-group">
+                <label for="useremail">Email :</label>
+                <input type="email" id="useremail" name="name_email" placeholder="Ваш@email.com" />
+            </div>
+            <div class="form-group">
+                <label for="message">Сообщение :</label>
+                <textarea id="message" name="message" placeholder="Введите ваше Сообщение..."></textarea>
+            </div>
+            <div>
+                <button type="submit">Отправить рукопись</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- Inclusion du fichier script.js -->
+
+    <footer>© 2026 — Все права защищены</footer>
+    <script src="javascript/jscript.js" defer></script>
+</body>
+</html>

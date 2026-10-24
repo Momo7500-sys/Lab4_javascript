@@ -1,102 +1,88 @@
-﻿// ==========================================
-// 1. Entrées / Sorties (Input/Output)
-// ==========================================
+//  Ввод/вывод: prompt (имя), alert (приветствие)
+const name = prompt("Здравствуйте! Как вас зовут?", "Историк") || "Историк";
+alert(`Привет, ${name}! Сейчас проанализируем коллекцию артефактов.`);
+console.log(`Пользователь: ${name}`);
+console.log("Дата анализа:", new Date().toLocaleString());
 
-// Demande le nom de l'utilisateur via prompt
-let userName = prompt("Введите ваше имя (Historian/Reconstructor):", "Иван");
+// ДАННЫЕ 
+// Возраст артефактов в годах (5–7 значений, от 100 до 5000)
+const artifacts = [120, 450, 1200, 2500, 3200, 800, 150];
+console.log("Возраст артефактов (лет):", artifacts);
 
-// Affichage d'un message de bienvenue personnalisé via alert
-if (userName) {
-    alert("Приветствуем вас, " + userName + ", в системе анализа артефактов!");
-} else {
-    alert("Приветствуем вас, уважаемый историк, в системе анализа артефактов!");
-}
-
-// Log initial dans la console
-console.log("--- Начало анализа находок ---");
-
-
-// ==========================================
-// 2. Données (Массив возрастов артефактов)
-// ==========================================
-// Remplacement par un tableau valide de 7 nombres (exemples de 100 à 5000 ans)
-const artifactAges =[];
-console.log("Исходный массив возрастов артефактов:", artifactAges);
-
-
-// ==========================================
-// 3. Fonctions de traitement (Функции)
-// ==========================================
-
-// Функция поиска максимума (самый старый артефакт)
-function findMaxAge(agesArray) {
-    let max = agesArray[0];
-    for (let i = 1; i < agesArray.length; i++) {
-        if (agesArray[i] > max) {
-            max = agesArray[i];
-        }
+//ФУНКЦИИ
+// Максимум в массиве (самый старый артефакт)
+function findMax(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) max = arr[i];
     }
     return max;
 }
 
-// Функция фильтрации (артефакты старше 1000 лет - древние)
-function filterAncientArtifacts(agesArray) {
-    let ancient = [];
-    for (let i = 0; i < agesArray.length; i++) {
-        if (agesArray[i] > 1000) {
-            ancient.push(agesArray[i]);
-        }
+// Фильтрация: элементы строго больше порога
+function filterGreater(arr, threshold) {
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > threshold) result.push(arr[i]);
     }
-    return ancient;
+    return result;
 }
 
-// Функция подсчета суммы всех возрастов
-function calculateSum(agesArray) {
+// Сумма элементов массива
+function sumArray(arr) {
     let sum = 0;
-    for (let i = 0; i < agesArray.length; i++) {
-        sum += agesArray[i];
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
     }
     return sum;
 }
 
+// Среднее арифметическое (на основе sumArray)
+function average(arr) {
+    return sumArray(arr) / arr.length;
+}
 
-// ==========================================
-// 4. Logique métier et boucles (Циклы и условия)
-// ==========================================
+//ЛОГИКА
+const oldest = findMax(artifacts);                 // самый старый
+const ancient = filterGreater(artifacts, 1000);     // старше 1000 лет
+const ancientCount = ancient.length;
+const totalAge = sumArray(artifacts);
+const avgAge = average(artifacts);
 
-// Appel des fonctions
-const maxAge = findMaxAge(artifactAges);
-const ancientArtifacts = filterAncientArtifacts(artifactAges);
-const totalSum = calculateSum(artifactAges);
+console.log("Древние артефакты (> 1000 лет):", ancient);
+console.log(`Самый старый артефакт: ${oldest} лет`);
+console.log(`Суммарный возраст коллекции: ${totalAge} лет`);
 
-// Calcul de l'âge moyen (Средний возраст)
-const averageAge = totalSum / artifactAges.length;
+// Основной вывод по заданию (alert)
+alert(`Средний возраст – ${Math.round(avgAge)} лет, ${ancientCount} артефактов – древние`);
 
-// Compte et calcul de la part des jeunes artefacts (≤ 300 лет) à l'aide d'une boucle
+//ЦИКЛ: МОЛОДЫЕ АРТЕФАКТЫ (≤ 300 лет)
 let youngCount = 0;
-for (let i = 0; i < artifactAges.length; i++) {
-    if (artifactAges[i] <= 300) {
+const youngAges = [];
+
+for (let i = 0; i < artifacts.length; i++) {
+    if (artifacts[i] <= 300) {
         youngCount++;
+        youngAges.push(artifacts[i]);
     }
 }
-// Calcul de la part (доля)
-let youngShare = (youngCount / artifactAges.length) * 100;
 
+const youngShare = (youngCount / artifacts.length) * 100; // доля в %
 
-// ==========================================
-// 5. Affichage des résultats (Вывод результатов)
-// ==========================================
+console.log(`Молодых артефактов (≤ 300 лет): ${youngCount} шт.`);
+console.log(`Их возраст: ${youngAges.join(", ")} лет`);
+console.log(`Доля молодых артефактов: ${youngShare.toFixed(1)} %`);
 
-// Вывод: alert – «Средний возраст – X лет, Y артефактов – древние»
-alert("Средний возраст – " + averageAge.toFixed(1) + " лет, " + ancientArtifacts.length + " артефактов – древние.");
-
-// Console – доля молодых артефактов и их количество
-console.log("Количество молодых артефактов (≤ 300 лет): " + youngCount);
-console.log("Доля молодых артефактов: " + youngShare.toFixed(2) + "%");
-
-// Доп. условие: если максимум > 3000 лет
-if (maxAge > 3000) {
-    console.log("Среди находок есть по-настоящему древние артефакты! (Максимальный возраст: " + maxAge + " лет)");
+// ДОПОЛНИТЕЛЬНОЕ УСЛОВИЕ 
+if (oldest > 3000) {
+    console.log("Среди находок есть по-настоящему древние артефакты!");
 }
 
-console.log("--- Анализ успешно завершен ---");
+// УСЛОВНЫЙ ВЫВОД ПО КОЛЛЕКЦИИ
+if (ancientCount === 0) {
+    console.log("Древних артефактов (старше 1000 лет) не обнаружено.");
+} else if (ancientCount >= artifacts.length / 2) {
+    console.log("Больше половины коллекции — древние артефакты.");
+} else {
+    console.log("Древние артефакты составляют меньшую часть коллекции.");
+}

@@ -1,88 +1,383 @@
-//  Ввод/вывод: prompt (имя), alert (приветствие)
-const name = prompt("Здравствуйте! Как вас зовут?", "Историк") || "Историк";
-alert(`Привет, ${name}! Сейчас проанализируем коллекцию артефактов.`);
-console.log(`Пользователь: ${name}`);
-console.log("Дата анализа:", new Date().toLocaleString());
+// ЛАБОРАТОРНАЯ РАБОТА №5
+// ВАРИАНТ 19
+// ТЕМА: ИСТОРИК И РЕКОНСТРУКТОР
 
-// ДАННЫЕ 
-// Возраст артефактов в годах (5–7 значений, от 100 до 5000)
-const artifacts = [120, 450, 1200, 2500, 3200, 800, 150];
-console.log("Возраст артефактов (лет):", artifacts);
 
-//ФУНКЦИИ
-// Максимум в массиве (самый старый артефакт)
-function findMax(arr) {
-    let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) max = arr[i];
-    }
-    return max;
-}
 
-// Фильтрация: элементы строго больше порога
-function filterGreater(arr, threshold) {
-    const result = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > threshold) result.push(arr[i]);
-    }
-    return result;
-}
+// 1. ПОИСК ЭЛЕМЕНТОВ DOM
 
-// Сумма элементов массива
-function sumArray(arr) {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
-    return sum;
-}
+const addEventBtn = document.getElementById("addEventBtn");
 
-// Среднее арифметическое (на основе sumArray)
-function average(arr) {
-    return sumArray(arr) / arr.length;
-}
+const toggleTimelineBtn = document.getElementById("toggleTimelineBtn");
 
-//ЛОГИКА
-const oldest = findMax(artifacts);                 // самый старый
-const ancient = filterGreater(artifacts, 1000);     // старше 1000 лет
-const ancientCount = ancient.length;
-const totalAge = sumArray(artifacts);
-const avgAge = average(artifacts);
+const themeBtn = document.getElementById("themeBtn");
 
-console.log("Древние артефакты (> 1000 лет):", ancient);
-console.log(`Самый старый артефакт: ${oldest} лет`);
-console.log(`Суммарный возраст коллекции: ${totalAge} лет`);
+const timelineContainer = document.querySelector("#timelineContainer");
 
-// Основной вывод по заданию (alert)
-alert(`Средний возраст – ${Math.round(avgAge)} лет, ${ancientCount} артефактов – древние`);
 
-//ЦИКЛ: МОЛОДЫЕ АРТЕФАКТЫ (≤ 300 лет)
-let youngCount = 0;
-const youngAges = [];
+// 2. ПРОВЕРКА НАЛИЧИЯ ЭЛЕМЕНТОВ
 
-for (let i = 0; i < artifacts.length; i++) {
-    if (artifacts[i] <= 300) {
-        youngCount++;
-        youngAges.push(artifacts[i]);
-    }
-}
+if (!addEventBtn || !toggleTimelineBtn ||
+    !themeBtn || !timelineContainer) {
 
-const youngShare = (youngCount / artifacts.length) * 100; // доля в %
+    console.error("Ошибка: необходимый HTML-элемент не найден.");
 
-console.log(`Молодых артефактов (≤ 300 лет): ${youngCount} шт.`);
-console.log(`Их возраст: ${youngAges.join(", ")} лет`);
-console.log(`Доля молодых артефактов: ${youngShare.toFixed(1)} %`);
-
-// ДОПОЛНИТЕЛЬНОЕ УСЛОВИЕ 
-if (oldest > 3000) {
-    console.log("Среди находок есть по-настоящему древние артефакты!");
-}
-
-// УСЛОВНЫЙ ВЫВОД ПО КОЛЛЕКЦИИ
-if (ancientCount === 0) {
-    console.log("Древних артефактов (старше 1000 лет) не обнаружено.");
-} else if (ancientCount >= artifacts.length / 2) {
-    console.log("Больше половины коллекции — древние артефакты.");
 } else {
-    console.log("Древние артефакты составляют меньшую часть коллекции.");
+
+
+    // 3. ПОЛУЧЕНИЕ НАЧАЛЬНЫХ СОБЫТИЙ ИЗ HTML
+
+    const initialCards = document.querySelectorAll(".event-card");
+
+    let events = [];
+
+    // 4. ВОССТАНОВЛЕНИЕ СОБЫТИЙ ИЗ LOCALSTORAGE
+
+    const savedEvents = localStorage.getItem("historicalEvents");
+
+    if (savedEvents !== null) {
+
+        try {
+
+            const parsedEvents = JSON.parse(savedEvents);
+
+            if (Array.isArray(parsedEvents)) {
+
+                events = parsedEvents.filter(function(event) {
+
+                    return event &&
+                        typeof event.date === "string" &&
+                        typeof event.title === "string";
+
+                });
+
+            } else {
+
+                console.error("Ошибка: неверный формат сохранённых событий.");
+
+            }
+
+        } catch (error) {
+
+            console.error("Ошибка при чтении событий:", error);
+
+        }
+
+    } else {
+
+        // Если сохранённых данных нет, используем события из HTML
+
+        initialCards.forEach(function(card) {
+
+            const date = card.querySelector(".event-date");
+
+            const title = card.querySelector("h3");
+
+            if (date && title) {
+
+                events.push({
+                    date: date.textContent.trim(),
+                    title: title.textContent.trim()
+                });
+
+            }
+
+        });
+
+    }
+
+
+    // 5. ФУНКЦИЯ СОХРАНЕНИЯ СОБЫТИЙ
+
+    function saveEvents() {
+
+        localStorage.setItem(
+            "historicalEvents",
+            JSON.stringify(events)
+        );
+
+    }
+
+
+    // 6. ФУНКЦИЯ ОТОБРАЖЕНИЯ СОБЫТИЙ
+
+    function displayEvents() {
+
+        // Очищаем контейнер перед добавлением карточек
+
+        timelineContainer.innerHTML = "";
+
+        // Перебираем все исторические события
+
+        events.forEach(function(event, index) {
+
+            // Создаём карточку события
+
+            const card = document.createElement("article");
+
+            card.className = "event-card";
+
+
+            // Создаём дату события
+
+            const date = document.createElement("p");
+
+            date.className = "event-date";
+
+            date.textContent = event.date;
+
+
+            // Создаём название события
+
+            const title = document.createElement("h3");
+
+            title.textContent = event.title;
+
+
+            // Создаём кнопку удаления
+
+            const deleteBtn = document.createElement("button");
+
+            deleteBtn.textContent = "Удалить";
+
+            deleteBtn.className = "delete-event-btn";
+
+            deleteBtn.type = "button";
+
+
+            // Добавляем обработчик удаления
+
+            deleteBtn.addEventListener("click", function() {
+
+                deleteEvent(index, card);
+
+            });
+
+
+            // Добавляем элементы в карточку
+
+            card.appendChild(date);
+
+            card.appendChild(title);
+
+            card.appendChild(deleteBtn);
+
+
+            // Добавляем карточку в контейнер
+
+            timelineContainer.appendChild(card);
+
+        });
+
+    }
+
+
+    // 7. ДОБАВЛЕНИЕ НОВОГО СОБЫТИЯ
+
+    addEventBtn.addEventListener("click", function() {
+
+        // Запрашиваем дату события
+
+        const date = prompt("Введите дату исторического события:");
+
+        if (date === null || date.trim() === "") {
+
+            alert("Дата события не введена!");
+
+            return;
+
+        }
+
+
+        // Запрашиваем название события
+
+        const title = prompt("Введите название исторического события:");
+
+        if (title === null || title.trim() === "") {
+
+            alert("Название события не введено!");
+
+            return;
+
+        }
+
+
+        // Создаём новый объект события
+
+        const newEvent = {
+
+            date: date.trim(),
+
+            title: title.trim()
+
+        };
+
+
+        // Добавляем событие в массив
+
+        events.push(newEvent);
+
+
+        // Сохраняем изменения
+
+        saveEvents();
+
+
+        // Обновляем отображение страницы
+
+        displayEvents();
+
+
+        alert("Историческое событие успешно добавлено!");
+
+    });
+
+
+    // 8. УДАЛЕНИЕ ИСТОРИЧЕСКОГО СОБЫТИЯ
+
+    function deleteEvent(index, card) {
+
+        // Проверяем существование события
+
+        if (!events[index]) {
+
+            console.error("Ошибка: событие не найдено!");
+
+            return;
+
+        }
+
+
+        // Добавляем класс анимации удаления
+
+        card.classList.add("fade-out");
+
+
+        // Удаляем событие после завершения анимации
+
+        setTimeout(function() {
+
+            events.splice(index, 1);
+
+            saveEvents();
+
+            displayEvents();
+
+            console.log("Историческое событие удалено.");
+
+        }, 300);
+
+    }
+
+
+    // 9. СКРЫТИЕ И ОТОБРАЖЕНИЕ ХРОНОЛОГИИ
+
+    toggleTimelineBtn.addEventListener("click", function() {
+
+        // Проверяем наличие контейнера
+
+        if (!timelineContainer) {
+
+            console.error("Ошибка: контейнер хронологии не найден!");
+
+            return;
+
+        }
+
+
+        // Переключаем класс скрытия
+
+        timelineContainer.classList.toggle("hidden");
+
+
+        // Изменяем текст кнопки
+
+        if (timelineContainer.classList.contains("hidden")) {
+
+            toggleTimelineBtn.textContent = "Показать хронологию";
+
+        } else {
+
+            toggleTimelineBtn.textContent = "Свернуть хронологию";
+
+        }
+
+    });
+
+
+    // 10. ВОССТАНОВЛЕНИЕ СОХРАНЁННОЙ ТЕМЫ
+
+    const savedTheme = localStorage.getItem("pageTheme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("theme-dark");
+
+    } else {
+
+        document.body.classList.remove("theme-dark");
+
+    }
+
+
+    // 11. ПЕРЕКЛЮЧЕНИЕ СВЕТЛОЙ И ТЁМНОЙ ТЕМЫ
+
+    themeBtn.addEventListener("click", function() {
+
+        // Меняем класс темы у элемента body
+
+        document.body.classList.toggle("theme-dark");
+
+
+        // Определяем текущую тему
+
+        let currentTheme;
+
+        if (document.body.classList.contains("theme-dark")) {
+
+            currentTheme = "dark";
+
+        } else {
+
+            currentTheme = "light";
+
+        }
+
+
+        // Сохраняем выбранную тему
+
+        localStorage.setItem("pageTheme", currentTheme);
+
+        console.log("Тема страницы изменена:", currentTheme);
+
+    });
+
+
+    // 12. ПОИСК ВСЕХ КНОПОК УДАЛЕНИЯ
+
+    const allDeleteButtons =
+        document.querySelectorAll(".delete-event-btn");
+
+    console.log(
+        "Количество кнопок удаления:",
+        allDeleteButtons.length
+    );
+
+
+    // 13. ПЕРВОНАЧАЛЬНОЕ ОТОБРАЖЕНИЕ ХРОНОЛОГИИ
+
+    displayEvents();
+
+
+    // 14. СОХРАНЕНИЕ НАЧАЛЬНЫХ СОБЫТИЙ
+
+    if (savedEvents === null) {
+
+        saveEvents();
+
+    }
+
+
+    console.log("Лабораторная работа №5 успешно загружена!");
+
 }

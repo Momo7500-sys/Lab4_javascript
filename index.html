@@ -1,182 +1,427 @@
-﻿<!DOCTYPE html>
-<html lang="ru" xmlns="http://w3.org">
+<!DOCTYPE html>
+<html lang="ru">
+
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>О СЕБЕ — Историк и реконструктор</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-        footer {
-            font-family: "Georgia", serif;
-            color: #ffffff;
-            background-color: var(--accent-color);
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
-        }
-    </style>
+
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Подключение JavaScript -->
+    <script src="jscript.js" defer></script>
 </head>
 
-<body>
-    <!-- Главный контейнер с эффектом «старой бумаги» -->
+<body class="theme-light">
+
+    <!-- Главный контейнер -->
     <div class="paper-container">
+
         <div class="vintage-badge">Архив</div>
 
+        <!-- ШАПКА САЙТА -->
         <header>
-            <h1>МАЙГА МОХАМЕД А — Историк и реконструктор</h1>
-            <!-- Обновление навигации для соответствия новым секциям (Flexbox в CSS) -->
+
+            <h1>
+                МАЙГА МОХАМЕД А — Историк и реконструктор
+            </h1>
+
             <nav class="nav-links">
                 <a href="#skills">Навыки</a>
-                <a href="#projects">Проекты по реконструкции</a>
+                <a href="#projects">Проекты</a>
                 <a href="#epochs">Исторические эпохи</a>
                 <a href="#artifacts">Артефакты</a>
+                <a href="#timeline">Хронология</a>
                 <a href="#contact">Контакты</a>
             </nav>
+
         </header>
 
-        <!-- Relative позиционирование -->
+
+        <!-- БОКОВАЯ ПАНЕЛЬ -->
         <aside class="sidebar-aside">
+
             <h2>Мой любимый период</h2>
-            <div>
+
+            <p>
                 Меня больше всего увлекает Эпоха викингов (VIII–XI века).
-                Это удивительное время морских походов, расцвета ремёсел,
-                создания уникального скандинавского орнамента и кораблестроения,
-                которое я мечтаю воссоздать in деталях.
-            </div>
+            </p>
+
+            <p>
+                Это удивительное время морских походов, расцвета ремёсел, создания уникального скандинавского орнамента и кораблестроения.
+            </p>
+
         </aside>
 
-        <!-- Static позиционирование для основного контента -->
+
+        <!-- ОСНОВНОЙ КОНТЕНТ -->
         <main class="main-content">
+
+
+            <!-- НАВЫКИ -->
             <section id="skills">
+
                 <h2>НАВЫКИ</h2>
+
                 <ul>
                     <li>Архивные исследования</li>
                     <li>Историческая реконструкция костюма</li>
                     <li>Картография и хронология</li>
                 </ul>
+
             </section>
 
+
+            <!-- ПРОЕКТЫ -->
             <section id="projects">
+
                 <h2>ПРОЕКТЫ ПО РЕКОНСТРУКЦИИ</h2>
+
                 <ol>
-                    <li>Реконструкция военного лагеря Древнего Рима (I век н.э.)</li>
-                    <li>Турнир Святого Георгия (Рыцарское Средневековье, XV век)</li>
-                    <li>Костюмы и быт наполеоновской эпохи (1812 год)</li>
-                    <li>Строительство макета средневековой кузницы</li>
+                    <li>
+                        Реконструкция военного лагеря Древнего Рима (I век н.э.)
+                    </li>
+
+                    <li>
+                        Турнир Святого Георгия (Рыцарское Средневековье, XV век)
+                    </li>
+
+                    <li>
+                        Костюмы и быт наполеоновской эпохи (1812 год)
+                    </li>
+
+                    <li>
+                        Строительство макета средневековой кузницы
+                    </li>
                 </ol>
+
             </section>
 
+
+            <!-- ГЛАВНОЕ ИЗОБРАЖЕНИЕ -->
             <div class="image-wrapper">
-                <img src="images/cost.png" alt="Портрет историка в процессе реконструкции средневекового костюма" width="400" height="200" style="filter: sepia(0.5);" />
+
+                <img src="images/cost.png" alt="Историческая реконструкция костюма" width="400" height="200" style="filter: sepia(0.5);">
+
             </div>
 
-            <hr class="vintage-divider" style="border: 1px dashed #8c6d4f; margin: 40px 0;">
 
-           
-            <!-- Блок 1: Исторические эпохи (Flexbox-карточки 1/2/3 в ряд) -->
+            <hr style="border: 1px dashed #8c6d4f; margin: 40px 0;">
+
+
+            <!-- ИСТОРИЧЕСКИЕ ЭПОХИ -->
             <section id="epochs" class="epochs-section">
+
                 <h2>ИСТОРИЧЕСКИЕ ЭПОХИ</h2>
+
                 <div class="epochs-flex-container">
 
+
+                    <!-- АНТИЧНОСТЬ -->
                     <article class="epoch-card">
+
                         <img src="images/antiquite.jpg" alt="Античность" class="epoch-card-img">
+
                         <div class="epoch-card-body">
+
                             <h3>Античность</h3>
-                            <p>Период: <time datetime="-0800/-0476">VIII в. до н.э. — V в. н.э.</time></p>
-                            <p>Ключевые события: Расцвет полисов, создание Римского государства.</p>
+
+                            <p>
+                                Период: VIII в. до н.э. — V в. н.э.
+                            </p>
+
+                            <p>
+                                Ключевые события: Расцвет полисов, создание Римского государства.
+                            </p>
+
                         </div>
+
                     </article>
 
+
+                    <!-- СРЕДНЕВЕКОВЬЕ -->
                     <article class="epoch-card">
+
                         <img src="images/chateau.jpeg" alt="Средневековье" class="epoch-card-img">
+
                         <div class="epoch-card-body">
+
                             <h3>Средневековье</h3>
-                            <p>Период: <time datetime="0476/1492">V — XV века</time></p>
-                            <p>Ключевые события: Великое переселение народов, эпоха рыцарей.</p>
+
+                            <p>
+                                Период: V — XV века
+                            </p>
+
+                            <p>
+                                Ключевые события: Великое переселение народов, эпоха рыцарей.
+                            </p>
+
                         </div>
+
                     </article>
 
+
+                    <!-- НОВОЕ ВРЕМЯ -->
                     <article class="epoch-card">
-                        <img src="images/tempsmoderne.jpeg" alt="Новое время" class="epoch-img">
+
+                        <img src="images/tempsmoderne.jpeg" alt="Новое время" class="epoch-card-img">
+
                         <div class="epoch-card-body">
+
                             <h3>Новое время</h3>
-                            <p>Период: <time datetime="1492/1914">Конец XV — начало XX в.</time></p>
-                            <p>Ключевые события: Промышленный переворот, научные открытия.</p>
+
+                            <p>
+                                Период: Конец XV — начало XX века
+                            </p>
+
+                            <p>
+                                Ключевые события: Промышленный переворот, научные открытия.
+                            </p>
+
                         </div>
+
                     </article>
 
                 </div>
+
             </section>
 
-            <!-- Блок 2: Артефакты музея (Grid-сетка 2х2) -->
+
+            <!-- АРТЕФАКТЫ МУЗЕЯ -->
             <section id="artifacts" class="artifacts-section">
+
                 <h2>АРТЕФАКТЫ МУЗЕЯ</h2>
+
                 <div class="artifacts-grid-container">
 
+
+                    <!-- АРТЕФАКТ 1 -->
                     <figure class="artifact-item">
+
                         <img src="images/epee.jpeg" alt="Римский гладиус">
+
                         <figcaption>
+
                             <h4>Римский гладиус</h4>
-                            <p>Век: <time datetime="0001/0100">I в. н.э.</time></p>
+
+                            <p>Век: I в. н.э.</p>
+
                         </figcaption>
+
                     </figure>
 
+
+                    <!-- АРТЕФАКТ 2 -->
                     <figure class="artifact-item">
+
                         <img src="images/armure.jpeg" alt="Кольчуга рыцаря">
+
                         <figcaption>
+
                             <h4>Кольчуга рыцаря</h4>
-                            <p>Век: <time datetime="1301/1400">XIV в.</time></p>
+
+                            <p>Век: XIV в.</p>
+
                         </figcaption>
+
                     </figure>
 
+
+                    <!-- АРТЕФАКТ 3 -->
                     <figure class="artifact-item">
+
                         <img src="images/astrolabe.jpeg" alt="Астролябия">
+
                         <figcaption>
+
                             <h4>Астролябия</h4>
-                            <p>Век: <time datetime="1501/1600">XVI в.</time></p>
+
+                            <p>Век: XVI в.</p>
+
                         </figcaption>
+
                     </figure>
 
+
+                    <!-- АРТЕФАКТ 4 -->
                     <figure class="artifact-item">
+
                         <img src="images/fusil.jpeg" alt="Мушкет кремнёвый">
+
                         <figcaption>
+
                             <h4>Мушкет кремнёвый</h4>
-                            <p>Век: <time datetime="1701/1800">XVIII в.</time></p>
+
+                            <p>Век: XVIII в.</p>
+
                         </figcaption>
+
                     </figure>
 
                 </div>
+
             </section>
-            <!-- ======================================================== -->
+
+
+            <!-- ================================== -->
+            <!-- ЛАБОРАТОРНАЯ РАБОТА №5 -->
+            <!-- ВАРИАНТ 19 -->
+            <!-- ================================== -->
+
+            <section id="timeline">
+
+                <h2>
+                    ХРОНОЛОГИЯ ИСТОРИЧЕСКИХ СОБЫТИЙ
+                </h2>
+
+                <p>
+                    Интерактивная хронология исторических событий. Вы можете добавлять и удалять события, а также изменять тему страницы.
+                </p>
+
+
+                <!-- КНОПКИ УПРАВЛЕНИЯ -->
+                <div class="timeline-controls">
+
+                    <button type="button" id="addEventBtn">
+                        Добавить событие
+                    </button>
+
+                    <button type="button" id="toggleTimelineBtn">
+                        Свернуть хронологию
+                    </button>
+
+                    <button type="button" id="themeBtn">
+                        Сменить тему
+                    </button>
+
+                </div>
+
+
+                <!-- КОНТЕЙНЕР СОБЫТИЙ -->
+                <div id="timelineContainer" class="timeline-container">
+
+                    <!-- СОБЫТИЕ 1 -->
+                    <article class="event-card">
+
+                        <p class="event-date">
+                            476 год
+                        </p>
+
+                        <h3>
+                            Падение Западной Римской империи
+                        </h3>
+
+                        <button type="button" class="delete-event-btn">
+                            Удалить
+                        </button>
+
+                    </article>
+
+
+                    <!-- СОБЫТИЕ 2 -->
+                    <article class="event-card">
+
+                        <p class="event-date">
+                            800 год
+                        </p>
+
+                        <h3>
+                            Коронация Карла Великого
+                        </h3>
+
+                        <button type="button" class="delete-event-btn">
+                            Удалить
+                        </button>
+
+                    </article>
+
+
+                    <!-- СОБЫТИЕ 3 -->
+                    <article class="event-card">
+
+                        <p class="event-date">
+                            1492 год
+                        </p>
+
+                        <h3>
+                            Открытие Америки
+                        </h3>
+
+                        <button type="button" class="delete-event-btn">
+                            Удалить
+                        </button>
+
+                    </article>
+
+                </div>
+
+            </section>
 
         </main>
 
-        <!-- Форма для отправки сообщений -->
+
+        <!-- ФОРМА КОНТАКТОВ -->
         <form id="contact" class="vintage-form" onsubmit="return false;">
-            <h2>Написать реконструктору</h2>
+
+            <h2>НАПИСАТЬ РЕКОНСТРУКТОРУ</h2>
+
             <div class="form-group">
-                <label for="username">Имя :</label>
-                <input type="text" id="username" name="username" placeholder="Ваше Имя" />
+
+                <label for="username">
+                    Имя:
+                </label>
+
+                <input type="text" id="username" name="username" placeholder="Ваше имя">
+
             </div>
+
+
             <div class="form-group">
-                <label for="useremail">Email :</label>
-                <input type="email" id="useremail" name="name_email" placeholder="Ваш@email.com" />
+
+                <label for="useremail">
+                    Email:
+                </label>
+
+                <input type="email" id="useremail" name="useremail" placeholder="Ваш@email.com">
+
             </div>
+
+
             <div class="form-group">
-                <label for="message">Сообщение :</label>
-                <textarea id="message" name="message" placeholder="Введите ваше Сообщение..."></textarea>
+
+                <label for="message">
+                    Сообщение:
+                </label>
+
+                <textarea id="message" name="message" placeholder="Введите ваше сообщение..."></textarea>
+
             </div>
-            <div>
-                <button type="submit">Отправить рукопись</button>
-            </div>
+
+
+            <button type="submit">
+                Отправить рукопись
+            </button>
+
         </form>
 
     </div>
- 
 
-    <footer>© 2026 — Все права защищены</footer>
-    <script src="javascript/jscript.js" defer></script>
+
+    <!-- ПОДВАЛ -->
+    <footer style="
+        text-align: center;
+        padding: 20px;
+        color: white;
+        background-color: #3d2017;
+        margin-top: 40px;
+    ">
+
+        © 2026 — Все права защищены
+
+    </footer>
+
 </body>
+
 </html>
